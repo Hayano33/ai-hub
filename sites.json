@@ -1,0 +1,27 @@
+[
+  {
+    "name": "ChatGPT",
+    "url": "https://chat.openai.com",
+    "category": "LLM"
+  },
+  {
+    "name": "Claude",
+    "url": "https://claude.ai",
+    "category": "LLM"
+  },
+  {
+    "name": "Gemini",
+    "url": "https://gemini.google.com",
+    "category": "LLM"
+  },
+  {
+    "name": "ElevenLabs",
+    "url": "https://elevenlabs.io/app/speech-synthesis/text-to-speech",
+    "category": "Voice"
+  },
+  {
+    "name": "Youglish",
+    "url": "https://youglish.com/",
+    "category": "English"
+  }
+]
