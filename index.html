@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Skylar AI Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Skylar AI Hub</h1>
+
+<div id="container"></div>
+
+<script>
+
+fetch("sites.json")
+.then(res => res.json())
+.then(data => {
+
+const container = document.getElementById("container")
+
+const categories = {}
+
+data.forEach(site => {
+
+if(!categories[site.category]){
+categories[site.category] = []
+}
+
+categories[site.category].push(site)
+
+})
+
+for(const category in categories){
+
+const title = document.createElement("h2")
+title.innerText = category
+container.appendChild(title)
+
+const grid = document.createElement("div")
+grid.className="grid"
+
+categories[category].forEach(site => {
+
+const domain = new URL(site.url).hostname
+const icon = `https://www.google.com/s2/favicons?domain=${domain}`
+
+const card = document.createElement("div")
+card.className="card"
+
+card.innerHTML=`
+<img src="${icon}">
+<p>${site.name}</p>
+`
+
+card.onclick = () => window.open(site.url)
+
+grid.appendChild(card)
+
+})
+
+container.appendChild(grid)
+
+}
+
+})
+
+</script>
+
+</body>
+</html>
