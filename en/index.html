@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skylar AI Navigator · EN</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+<main>
+  <section class="hero">
+    <div class="pill">MY AI SPACE</div>
+    <h1>AI Navigator</h1>
+    <p class="sub">English version. Quickly access AI tools you and your partners use every day.</p>
+
+    <div class="toolbar">
+      <div class="searchBox">
+        <div class="icon">🔍</div>
+        <input id="search" placeholder="Search tools or tags…" />
+      </div>
+
+      <button class="btn primary" id="visitEnglish">🌍 English site</button>
+      <button class="btn" id="visitChinese">中文 Chinese</button>
+      <button class="btn" id="githubRepo">🧬 GitHub</button>
+    </div>
+  </section>
+
+  <div id="container"></div>
+
+  <div class="footerNote">Skylar's AI Navigator · English · auto updated</div>
+</main>
+
+<script>
+const PROJECT_URL_EN = "https://ai-hub-three-theta.vercel.app/en/";
+const PROJECT_URL_ZH = "https://ai-hub-three-theta.vercel.app/";
+const REPO_URL = "https://github.com/Hayano33/ai-hub";
+
+document.getElementById("visitEnglish").onclick = () => window.open(PROJECT_URL_EN, "_blank");
+document.getElementById("visitChinese").onclick = () => window.open(PROJECT_URL_ZH, "_blank");
+document.getElementById("githubRepo").onclick = () => window.open(REPO_URL, "_blank");
+
+function favicon(domain) {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+}
+
+function safeDesc(s){ return s || "Open tool"; }
+
+function normalizeTags(tags) {
+  if (!tags) return [];
+  if (Array.isArray(tags)) return tags;
+  if (typeof tags === "string") return tags.split(",").map(t => t.trim()).filter(Boolean);
+  return [];
+}
+
+function lower(s){ return (s || "").toLowerCase(); }
+
+function render(data) {
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+
+  const categories = {};
+  data.forEach(site => {
+    const cat = site.category || "Others";
+    if (!categories[cat]) categories[cat] = [];
+    categories[cat].push(site);
+  });
+
+  Object.keys(categories).forEach(cat => {
+    const section = document.createElement("section");
+    section.className = "section";
+
+    const title = document.createElement("div");
+    title.className = "sectionTitle";
+    title.innerText = cat;
+
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    categories[cat].forEach(site => {
+      const domain = new URL(site.url).hostname;
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const top = document.createElement("div");
+      top.className = "cardHeader";
+
+      const iconWrap = document.createElement("div");
+      iconWrap.className = "iconCircle";
+
+      const img = document.createElement("img");
+      img.src = site.icon || favicon(domain);
+      img.onerror = () => { img.src = favicon(domain); };
+      iconWrap.appendChild(img);
+
+      const titleGroup = document.createElement("div");
+      titleGroup.className = "titleGroup";
+
+      const h = document.createElement("p");
+      h.className = "cardTitle";
+      h.innerText = site.name;
+
+      const desc = document.createElement("p");
+      desc.className = "cardDesc";
+      desc.innerText = safeDesc(site.desc);
+
+      titleGroup.appendChild(h);
+      titleGroup.appendChild(desc);
+
+      top.appendChild(iconWrap);
+      top.appendChild(titleGroup);
+
+      const badges = document.createElement("div");
+      badges.className = "badges";
+
+      normalizeTags(site.tags).forEach(t => {
+        const b = document.createElement("span");
+        b.className = "badge";
+        b.innerText = t;
+        badges.appendChild(b);
+      });
+
+      card.appendChild(top);
+      card.appendChild(badges);
+
+      card.onclick = () => window.open(site.url, "_blank");
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(title);
+    section.appendChild(grid);
+    container.appendChild(section);
+  });
+}
+
+fetch("../sites_en.json")
+  .then(r => r.json())
+  .then(data => {
+    let allSites = data;
+    const input = document.getElementById("search");
+    input.addEventListener("input", e => {
+      const q = lower(e.target.value.trim());
+      if (!q) return render(allSites);
+
+      const filtered = allSites.filter(site => {
+        const name = lower(site.name);
+        const desc = lower(site.desc);
+        const tags = normalizeTags(site.tags).join(" ").toLowerCase();
+        return name.includes(q) || desc.includes(q) || tags.includes(q);
+      });
+      render(filtered);
+    });
+
+    render(allSites);
+  });
+</script>
+</body>
+</html>
