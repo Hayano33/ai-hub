@@ -2,26 +2,124 @@
   {
     "name": "ChatGPT",
     "url": "https://chat.openai.com",
-    "category": "LLM"
-  },
-  {
-    "name": "Claude",
-    "url": "https://claude.ai",
-    "category": "LLM"
+    "category": "对话 & 助手",
+    "desc": "OpenAI旗舰对话模型，适合写作、分析、编程。",
+    "tags": "CHAT · OPENAI"
   },
   {
     "name": "Gemini",
     "url": "https://gemini.google.com",
-    "category": "LLM"
+    "category": "对话 & 助手",
+    "desc": "Google旗舰AI，深度整合Google生态。",
+    "tags": "CHAT · GOOGLE"
   },
+  {
+    "name": "Claude",
+    "url": "https://claude.ai",
+    "category": "对话 & 助手",
+    "desc": "Anthropic出品，擅长长文分析与专业写作。",
+    "tags": "CHAT · ANTHROPIC"
+  },
+  {
+    "name": "Perplexity",
+    "url": "https://www.perplexity.ai/",
+    "category": "对话 & 助手",
+    "desc": "AI搜索引擎，实时联网检索，答案带来源引用。",
+    "tags": "SEARCH · AI"
+  },
+
+  {
+    "name": "Gemma",
+    "url": "https://ai.google.dev/gemma",
+    "category": "演示 & 幻灯片",
+    "desc": "Google轻量级开源模型，可本地或云端生成任务。",
+    "tags": "SLIDES · GOOGLE"
+  },
+  {
+    "name": "Gamma",
+    "url": "https://gamma.app",
+    "category": "演示 & 幻灯片",
+    "desc": "AI一键生成演示文稿，设计精美。",
+    "tags": "SLIDES · DESIGN"
+  },
+  {
+    "name": "Beautiful.ai",
+    "url": "https://www.beautiful.ai/",
+    "category": "演示 & 幻灯片",
+    "desc": "智能排版PPT工具，自动调整布局，商务风格一流。",
+    "tags": "SLIDES · AUTO"
+  },
+
+  {
+    "name": "Midjourney",
+    "url": "https://www.midjourney.com/",
+    "category": "图片生成",
+    "desc": "顶级AI绘画工具，艺术风格惊艳。",
+    "tags": "IMAGE · ART"
+  },
+  {
+    "name": "DALL-E 3",
+    "url": "https://openai.com/dall-e-3",
+    "category": "图片生成",
+    "desc": "OpenAI图像生成，与ChatGPT无缝协同。",
+    "tags": "IMAGE · OPENAI"
+  },
+  {
+    "name": "Stable Diffusion",
+    "url": "https://stability.ai/stable-diffusion",
+    "category": "图片生成",
+    "desc": "开源图像生成，适合产品创意素材。",
+    "tags": "IMAGE · OPEN SOURCE"
+  },
+  {
+    "name": "Adobe Firefly",
+    "url": "https://www.adobe.com/sensei/generative-ai/firefly.html",
+    "category": "图片生成",
+    "desc": "Adobe出品，授权安全，深度整合PS/Illustrator。",
+    "tags": "IMAGE · ADOBE"
+  },
+
+  {
+    "name": "Runway",
+    "url": "https://runwayml.com/",
+    "category": "视频生成",
+    "desc": "AI视频生成与编辑工具，Gen-3模型效果惊艳。",
+    "tags": "VIDEO · GEN AI"
+  },
+  {
+    "name": "Sora",
+    "url": "https://openai.com/sora",
+    "category": "视频生成",
+    "desc": "OpenAI视频生成模型，时间一致性强。",
+    "tags": "VIDEO · OPENAI"
+  },
+  {
+    "name": "可灵 Kling",
+    "url": "https://kling.ai/",
+    "category": "视频生成",
+    "desc": "短视频AI生成工具，中文友好。",
+    "tags": "VIDEO · 快手"
+  },
+  {
+    "name": "Pika",
+    "url": "https://pika.art/",
+    "category": "视频生成",
+    "desc": "快速生成短视频，支持图片转视频。",
+    "tags": "VIDEO · FAST"
+  },
+
   {
     "name": "ElevenLabs",
     "url": "https://elevenlabs.io/app/speech-synthesis/text-to-speech",
-    "category": "Voice"
+    "category": "语音 & 音频",
+    "desc": "文本转语音工具，支持多声音。",
+    "tags": "VOICE · TTS"
   },
   {
     "name": "Youglish",
     "url": "https://youglish.com/",
-    "category": "English"
+    "category": "英语学习",
+    "desc": "按关键词听例句、纠发音。",
+    "tags": "LEARN · ENGLISH"
   }
 ]
