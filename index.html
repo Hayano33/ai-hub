@@ -1,72 +1,175 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Skylar AI Hub</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skylar's AI Navigator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+<main>
+  <section class="hero">
+    <div class="pill">MY AI SPACE</div>
+    <h1>AI Navigator</h1>
+    <p class="sub">你的专属 AI 工具导航，快速启动每一天。以后新增工具只用改一个文件，自动抓 icon、点击即开。</p>
 
-<h1>Skylar AI Hub</h1>
+    <div class="toolbar">
+      <div class="searchBox">
+        <div class="icon">🔍</div>
+        <input id="search" placeholder="搜索工具名称 / 标签…" />
+      </div>
 
-<div id="container"></div>
+      <button class="btn primary" id="visitProject">💡 打开当前版本</button>
+      <button class="btn" id="githubRepo">🧩 GitHub 仓库</button>
+    </div>
+  </section>
+
+  <div id="container"></div>
+
+  <div class="footerNote">Skylar's AI Navigator · 持续更新</div>
+</main>
 
 <script>
+const PROJECT_URL = "https://ai-hub-three-theta.vercel.app";
+const REPO_URL = "https://github.com/Hayano33/ai-hub";
+
+function favicon(domain) {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+}
+
+function safeDesc(s){
+  return s || "点击进入";
+}
+
+function normalizeTags(tags){
+  if (Array.isArray(tags)) return tags.join(" ");
+  if (typeof tags === "string") return tags;
+  return "";
+}
+
+function lower(s){
+  return (s || "").toString().toLowerCase();
+}
+
+document.getElementById("visitProject").onclick = () => window.open(PROJECT_URL, "_blank");
+document.getElementById("githubRepo").onclick = () => window.open(REPO_URL, "_blank");
+
+function render(data) {
+  const categories = {};
+  data.forEach(site => {
+    const cat = site.category || "未分类";
+    categories[cat] = categories[cat] || [];
+    categories[cat].push(site);
+  });
+
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+
+  Object.keys(categories).forEach(cat => {
+    const section = document.createElement("section");
+    section.className = "section";
+
+    const title = document.createElement("div");
+    title.className = "sectionTitle";
+    title.innerText = cat;
+
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    categories[cat].forEach(site => {
+      const domain = new URL(site.url).hostname;
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const top = document.createElement("div");
+      top.className = "cardHeader";
+
+      const iconWrap = document.createElement("div");
+      iconWrap.className = "iconCircle";
+
+      const img = document.createElement("img");
+      img.src = site.icon || favicon(domain);
+      img.onerror = () => {
+        img.src = favicon(domain);
+      };
+      iconWrap.appendChild(img);
+
+      const titleGroup = document.createElement("div");
+      titleGroup.className = "titleGroup";
+
+      const h = document.createElement("p");
+      h.className = "cardTitle";
+      h.innerText = site.name;
+
+      const desc = document.createElement("p");
+      desc.className = "cardDesc";
+      desc.innerText = safeDesc(site.desc);
+
+      titleGroup.appendChild(h);
+      titleGroup.appendChild(desc);
+
+      top.appendChild(iconWrap);
+      top.appendChild(titleGroup);
+
+      const badges = document.createElement("div");
+      badges.className = "badges";
+
+      const tagArr = Array.isArray(site.tags)
+        ? site.tags
+        : (site.tags ? [site.tags] : []);
+
+      tagArr.forEach(t => {
+        const b = document.createElement("span");
+        b.className = "badge";
+        b.innerText = t;
+        badges.appendChild(b);
+      });
+
+      card.appendChild(top);
+      card.appendChild(badges);
+
+      card.onclick = () => window.open(site.url, "_blank");
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(title);
+    section.appendChild(grid);
+    container.appendChild(section);
+  });
+}
 
 fetch("sites.json")
-.then(res => res.json())
-.then(data => {
+  .then(r => r.json())
+  .then(data => {
+    let allSites = data;
 
-const container = document.getElementById("container")
+    const input = document.getElementById("search");
+    input.addEventListener("input", e => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) {
+        render(allSites);
+        return;
+      }
 
-const categories = {}
+      const filtered = allSites.filter(site => {
+        const name = lower(site.name);
+        const desc = lower(site.desc);
+        const tagsStr = lower(normalizeTags(site.tags));
+        return (
+          name.includes(q) ||
+          desc.includes(q) ||
+          tagsStr.includes(q)
+        );
+      });
 
-data.forEach(site => {
+      render(filtered);
+    });
 
-if(!categories[site.category]){
-categories[site.category] = []
-}
-
-categories[site.category].push(site)
-
-})
-
-for(const category in categories){
-
-const title = document.createElement("h2")
-title.innerText = category
-container.appendChild(title)
-
-const grid = document.createElement("div")
-grid.className="grid"
-
-categories[category].forEach(site => {
-
-const domain = new URL(site.url).hostname
-const icon = `https://www.google.com/s2/favicons?domain=${domain}`
-
-const card = document.createElement("div")
-card.className="card"
-
-card.innerHTML=`
-<img src="${icon}">
-<p>${site.name}</p>
-`
-
-card.onclick = () => window.open(site.url)
-
-grid.appendChild(card)
-
-})
-
-container.appendChild(grid)
-
-}
-
-})
-
+    render(allSites);
+  });
 </script>
-
 </body>
 </html>
