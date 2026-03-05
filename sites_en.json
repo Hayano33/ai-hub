@@ -1,0 +1,22 @@
+[
+  {"name": "ChatGPT","url": "https://chat.openai.com","category": "Chat & Assistant","desc": "OpenAI flagship model, good for writing, analysis, coding.","tags": "CHAT · OPENAI"},
+  {"name": "Gemini","url": "https://gemini.google.com","category": "Chat & Assistant","desc": "Google flagship AI integrated with the Google ecosystem.","tags": "CHAT · GOOGLE"},
+  {"name": "Claude","url": "https://claude.ai","category": "Chat & Assistant","desc": "Anthropic model, strong at long-text analysis and professional writing.","tags": "CHAT · ANTHROPIC"},
+  {"name": "Perplexity","url": "https://www.perplexity.ai/","category": "Chat & Assistant","desc": "AI search engine with real-time browsing and citations.","tags": "SEARCH · AI"},
+  {"name": "NotebookLM","url": "https://notebooklm.google.com/","category": "Notes & Research","desc": "Google NotebookLM for knowledge base Q&A.","tags": "NOTES · GOOGLE"},
+  {"name": "AI Studio (Google)","url": "https://aistudio.google.com/prompts/new_chat","category": "Chat & Assistant","desc": "Google AI Studio prompt chat starter.","tags": "DEV · GOOGLE"},
+  {"name": "Gemma","url": "https://ai.google.dev/gemma","category": "Presentation","desc": "Google lightweight open-source model for local/cloud generation.","tags": "SLIDES · GOOGLE"},
+  {"name": "Gamma","url": "https://gamma.app","category": "Presentation","desc": "Generate slide decks fast with strong design.","tags": "SLIDES · DESIGN"},
+  {"name": "Beautiful.ai","url": "https://www.beautiful.ai/","category": "Presentation","desc": "Smart layout tool for clean, business-ready decks.","tags": "SLIDES · AUTO"},
+  {"name": "Midjourney","url": "https://www.midjourney.com/home","category": "Image Generation","desc": "High-end AI art tool for striking visuals.","tags": "IMAGE · ART"},
+  {"name": "DALL-E 3","url": "https://openai.com/dall-e","category": "Image Generation","desc": "OpenAI image generation tightly integrated with ChatGPT.","tags": "IMAGE · OPENAI"},
+  {"name": "Stable Diffusion","url": "https://stability.ai/","category": "Image Generation","desc": "Open-source image generation; highly customizable for product imagery.","tags": "IMAGE · OPEN SOURCE"},
+  {"name": "Adobe Firefly","url": "https://www.adobe.com/products/firefly.html","category": "Image Generation","desc": "Adobe model integrated with PS/Illustrator workflows.","tags": "IMAGE · ADOBE"},
+  {"name": "Runway","url": "https://runwayml.com","category": "Video Generation","desc": "AI video generation and editing.","tags": "VIDEO · GEN AI"},
+  {"name": "Sora","url": "https://openai.com/sora","category": "Video Generation","desc": "OpenAI video model with strong temporal consistency.","tags": "VIDEO · OPENAI"},
+  {"name": "Kling","url": "https://kling.kuaishou.com/","category": "Video Generation","desc": "Kuaishou video generation tool (Chinese-friendly).","tags": "VIDEO · 快手"},
+  {"name": "Pika","url": "https://pika.art/","category": "Video Generation","desc": "Fast short video generation, including image-to-video.","tags": "VIDEO · FAST"},
+  {"name": "ElevenLabs","url": "https://elevenlabs.io/app/speech-synthesis/text-to-speech","category": "Voice & Audio","desc": "Text-to-speech with multiple voice styles.","tags": "VOICE · TTS"},
+  {"name": "Youglish","url": "https://youglish.com/","category": "English Learning","desc": "Practice pronunciation with real-world examples.","tags": "LEARN · ENGLISH"},
+  {"name": "MindBooster Studio","url": "https://studio.mindbooster.ai/loginByAccount","category": "Company Tools","desc": "Internal MindBooster Studio login.","tags": "INTERNAL"}
+]
